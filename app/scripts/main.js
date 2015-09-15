@@ -46,6 +46,10 @@ $(document).ready(function () {
     }).fail(handleAJAXError);
   })
 
+  $('.word-search-form').on('submit', function (event) {
+    console.log("Handle search here...");
+  });
+
   $.ajax(API_ROOT + '/words.json')
     .done(handleWordList)
     .fail(handleAJAXError);
