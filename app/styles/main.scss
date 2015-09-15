@@ -92,7 +92,10 @@ body {
   }
 }
 
-.highlight {
-  background-color: #ffff99;
-  transition: any 0.5s;
+.word-list .list-group-item {
+  transition: background-color 0.25s;
+
+  &.highlight {
+    background-color: #ffff99;
+  }
 }

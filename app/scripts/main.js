@@ -7,7 +7,7 @@ $(document).ready(function () {
       "<h4 class='list-group-item-heading'>" + entry.word + "</h4>" +
       "<p class='list-group-item-text'>" + entry.definition + "</p></a>"
     );
-    $('.list-group').append(definition)
+    $('.word-list ').append(definition)
     return definition;
   }
 
@@ -30,15 +30,19 @@ $(document).ready(function () {
     }
     var newDefinition = appendDefinition(entry);
 
+    newDefinition.addClass("highlight");
+    setTimeout(function () {
+      newDefinition.removeClass("highlight");
+    }, 1000);
+
     $.ajax(API_ROOT + '/create', {
       method: 'POST',
       data: entry
     }).done(function (data) {
-      console.log(newDefinition);
       newDefinition.addClass("highlight");
       setTimeout(function () {
         newDefinition.removeClass("highlight");
-      }, 500);
+      }, 1000);
     }).fail(handleAJAXError);
   })
 
