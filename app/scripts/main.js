@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  const API_ROOT = 'http://192.168.128.111:3000';
+  // const API_ROOT = 'http://192.168.128.111:3000';
+  const API_ROOT = 'http://word-dict.herokuapp.com';
 
   var appendDefinition = function (entry) {
     var definition = $(
