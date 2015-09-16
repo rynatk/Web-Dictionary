@@ -2,6 +2,8 @@ $(document).ready(function () {
   // const API_ROOT = 'http://192.168.128.111:3000';
   const API_ROOT = 'http://word-dict.herokuapp.com';
 
+
+
   var appendDefinition = function (entry) {
     var definition = $(
       "<a href='#' class='list-group-item'>" +
@@ -22,6 +24,7 @@ $(document).ready(function () {
     });
   };
 
+////////////////////////////////////////////////////////////////////////////////
   $('.add-definition-form').on('submit', function (event) {
     event.preventDefault();
     $('.add-definition-modal').modal('hide');
@@ -44,13 +47,25 @@ $(document).ready(function () {
       setTimeout(function () {
         newDefinition.removeClass("highlight");
       }, 1000);
+    // $(".add-definition-form form-horizontal").reset();
+    }).fail(handleAJAXError);
+  })
+////////////////////////////////////////////////////////////////////////////////
+  //const Test_URL = 'http://word-dict.herokuapp.com/words.json';
+
+  $('.word-search-form').on('submit', function (event) {
+    event.preventDefault();
+    //var searchedFor = { q:$('input[name=q]', this).val() };... This doesn't work.
+    $.ajax(API_ROOT + '/search', {
+      //method: 'GET', ... default
+      data: { q:$('input[name=q]', this).val() }
+    }).done(function (data) {
+      $('.word-list').empty();
+      handleWordList(data);
     }).fail(handleAJAXError);
   })
 
-  $('.word-search-form').on('submit', function (event) {
-    console.log("Handle search here...");
-  });
-
+////////////////////////////////////////////////////////////////////////////////
   $.ajax(API_ROOT + '/words.json')
     .done(handleWordList)
     .fail(handleAJAXError);
