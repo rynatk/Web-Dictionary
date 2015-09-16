@@ -39,6 +39,8 @@ $(document).ready(function () {
       newDefinition.removeClass("highlight");
     }, 1000);
 
+    (this).reset();
+
     $.ajax(API_ROOT + '/create', {
       method: 'POST',
       data: entry
@@ -47,7 +49,7 @@ $(document).ready(function () {
       setTimeout(function () {
         newDefinition.removeClass("highlight");
       }, 1000);
-    // $(".add-definition-form form-horizontal").reset();
+     //(this).reset();
     }).fail(handleAJAXError);
   })
 ////////////////////////////////////////////////////////////////////////////////
